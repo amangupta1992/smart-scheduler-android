@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
     private Spinner jobTypeSpinner, networkTypeSpinner;
     private Switch requiresChargingSwitch, isPeriodicSwitch;
     private EditText intervalInMillisEditText;
-    private Button removeSmartJobButton;
+    private Button smartJobButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,19 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
         requiresChargingSwitch = (Switch) findViewById(R.id.switchRequiresCharging);
         isPeriodicSwitch = (Switch) findViewById(R.id.switchPeriodicJob);
         intervalInMillisEditText = (EditText) findViewById(R.id.jobInterval);
-        removeSmartJobButton = (Button) findViewById(R.id.removeJobButton);
+        smartJobButton = (Button) findViewById(R.id.smartJobButton);
     }
 
-    public void onAddJobBtnClick(View view) {
+    public void onSmartJobBtnClick(View view) {
+        SmartScheduler jobScheduler = SmartScheduler.getInstance(this);
+
+        // Check if any periodic job is currently scheduled
+        if (jobScheduler.contains(JOB_ID)) {
+            removePeriodicJob();
+            return;
+        }
+
+        // Create a new job with specified params
         Job job = createJob();
         if (job == null) {
             Toast.makeText(MainActivity.this, "Invalid paramteres specified. " +
@@ -48,12 +59,16 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
             return;
         }
 
-        SmartScheduler jobScheduler = SmartScheduler.getInstance(this);
+        // Schedule current created job
         if (jobScheduler.addJob(job)) {
             Toast.makeText(MainActivity.this, "Job successfully added!", Toast.LENGTH_SHORT).show();
 
-            // Enable RemoveJob Button in case Job is Periodic
-            enableRemoveJobBtn(job.isPeriodic());
+            if (job.isPeriodic()) {
+                smartJobButton.setText(getString(R.string.remove_job_btn));
+            } else {
+                smartJobButton.setAlpha(0.5f);
+                smartJobButton.setEnabled(false);
+            }
         }
     }
 
@@ -114,13 +129,8 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
         return networkType;
     }
 
-    private void enableRemoveJobBtn(boolean enable) {
-        removeSmartJobButton.setEnabled(enable);
-    }
-
-    public void onRemoveJobBtnClick(View view) {
-        // Disable RemoveJob Button as no job is scheduled currently
-        enableRemoveJobBtn(false);
+    private void removePeriodicJob() {
+        smartJobButton.setText(getString(R.string.schedule_job_btn));
 
         SmartScheduler jobScheduler = SmartScheduler.getInstance(this);
         if (!jobScheduler.contains(JOB_ID)) {
@@ -130,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
 
         if (jobScheduler.removeJob(JOB_ID)) {
             Toast.makeText(MainActivity.this, "Job successfully removed!", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -144,6 +153,27 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
                 }
             });
             Log.d(TAG, "Job: " + job.getJobId() + " scheduled!");
+
+            if (!job.isPeriodic()) {
+                smartJobButton.setAlpha(1.0f);
+                smartJobButton.setEnabled(true);
+            }
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void onResetSchedulerClick(MenuItem item) {
+        SmartScheduler smartScheduler = SmartScheduler.getInstance(getApplicationContext());
+        smartScheduler.removeJob(JOB_ID);
+
+        smartJobButton.setText(getString(R.string.schedule_job_btn));
+        smartJobButton.setEnabled(true);
+        smartJobButton.setAlpha(1.0f);
+    }
 }
+
