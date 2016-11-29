@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="io.hypertrack.android_scheduler_demo.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/jobParameterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinnerJobType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:entries="@array/job_type_array"
+            android:prompt="@string/job_type_spinner_prompt" />
+
+        <Spinner
+            android:id="@+id/spinnerNetworkType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="16dp"
+            android:entries="@array/network_type_array"
+            android:prompt="@string/network_type_spinner_prompt" />
+
+        <Switch
+            android:id="@+id/switchRequiresCharging"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Requires Charging" />
+
+        <Switch
+            android:id="@+id/switchPeriodicJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Periodic Job" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interval(ms)"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/jobInterval"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:inputType="number"
+                android:text="1000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addJobButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jobParameterLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:onClick="onAddJobBtnClick"
+        android:text="Add Job">
+        <requestFocus />
+    </Button>
+
+    <Button
+        android:id="@+id/removeJobButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addJobButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:onClick="onRemoveJobBtnClick"
+        android:text="Remove Job" />
+</RelativeLayout>
