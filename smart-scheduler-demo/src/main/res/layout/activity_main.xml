@@ -80,7 +80,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:onClick="onAddJobBtnClick"
-        android:text="Add Job">
+        android:text="Schedule Job">
         <requestFocus />
     </Button>
 
@@ -91,6 +91,7 @@
         android:layout_below="@id/addJobButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:enabled="false"
         android:onClick="onRemoveJobBtnClick"
-        android:text="Remove Job" />
+        android:text="Remove Periodic Job" />
 </RelativeLayout>

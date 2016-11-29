@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
     private Spinner jobTypeSpinner, networkTypeSpinner;
     private Switch requiresChargingSwitch, isPeriodicSwitch;
     private EditText intervalInMillisEditText;
+    private Button removeSmartJobButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
         requiresChargingSwitch = (Switch) findViewById(R.id.switchRequiresCharging);
         isPeriodicSwitch = (Switch) findViewById(R.id.switchPeriodicJob);
         intervalInMillisEditText = (EditText) findViewById(R.id.jobInterval);
+        removeSmartJobButton = (Button) findViewById(R.id.removeJobButton);
     }
 
     public void onAddJobBtnClick(View view) {
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
         SmartScheduler jobScheduler = SmartScheduler.getInstance(this);
         if (jobScheduler.addJob(job)) {
             Toast.makeText(MainActivity.this, "Job successfully added!", Toast.LENGTH_SHORT).show();
+
+            // Enable RemoveJob Button in case Job is Periodic
+            enableRemoveJobBtn(job.isPeriodic());
         }
     }
 
@@ -108,7 +114,14 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
         return networkType;
     }
 
+    private void enableRemoveJobBtn(boolean enable) {
+        removeSmartJobButton.setEnabled(enable);
+    }
+
     public void onRemoveJobBtnClick(View view) {
+        // Disable RemoveJob Button as no job is scheduled currently
+        enableRemoveJobBtn(false);
+
         SmartScheduler jobScheduler = SmartScheduler.getInstance(this);
         if (!jobScheduler.contains(JOB_ID)) {
             Toast.makeText(MainActivity.this, "No job exists with JobID: " + JOB_ID, Toast.LENGTH_SHORT).show();
@@ -117,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
 
         if (jobScheduler.removeJob(JOB_ID)) {
             Toast.makeText(MainActivity.this, "Job successfully removed!", Toast.LENGTH_SHORT).show();
+
         }
     }
 
