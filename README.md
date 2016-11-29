@@ -1,9 +1,9 @@
-# smart-scheduler
+# smart-scheduler-android
 [![Slack Status](http://slack.hypertrack.io/badge.svg)](http://slack.hypertrack.io)
 
 ## Overview
 
-An utility library for Android to schedule one time or periodic jobs while your app is running. Currently, Android OS supports 3 types of scheduling APIs: `Handler`, `AlarmManager` and `JobScheduler`.
+A utility library for Android to schedule one-time or periodic jobs while your app is running. Currently, Android OS supports 3 types of scheduling APIs: `Handler`, `AlarmManager` and `JobScheduler`.
 Choosing which API to use depends on the certain conditions. 
 
 #### `AlarmManager` API: 
@@ -35,7 +35,7 @@ Choosing which API to use depends on the certain conditions.
 
 ##### CONS:
 * This is only available on Android Lollipop and above (21*).
-* `JobScheduler` API with Network dependency deos not get scheduled if the period is below 30 seconds.
+* `JobScheduler` API with Network dependency doesn't get scheduled if the period is below 30 seconds.
 * It starts failing if the power saver mode has been enabled on the device.
 
 
@@ -53,7 +53,7 @@ Choosing which API to use depends on the certain conditions.
 
 ## Usage
 
-* The class `SmartScheduler` serves as entry point. You need to create a `Job` object with the corresponding job parameters using the `Job.Builder` class.
+* The class `SmartScheduler` serves as the entry point. You need to create a `Job` object with the corresponding job parameters using the `Job.Builder` class.
 
 * The `Job.Builder` class has many extra options, e.g. you can specify a required network connection, required charging state, make the job periodic or run the job at an exact time.
 
@@ -79,7 +79,7 @@ Choosing which API to use depends on the certain conditions.
 
 * Each job has a unique ID. This ID helps to identify the job later to update requirements or to cancel the job. In case this unique ID is not specified in the `Job` object, one will be auto*generated using `Job.generateJobID()` method.
 
-* Once an `Job` object has been created with the relevant parameters, you can add this job using `SmartScheduler` class.
+* Once a `Job` object has been created with the relevant parameters, you can add this job using `SmartScheduler` class.
 
 ```
 	SmartScheduler jobScheduler = SmartScheduler.getInstance(getApplicationContext());
@@ -90,7 +90,7 @@ Choosing which API to use depends on the certain conditions.
     }
 ```
 
-* A `Non*Periodic` Job will be removed automatically once it has been scheduled successfully. For `Periodic` Jobs, call `SmartScheduler.removeJob(jobID)` method to remove job.
+* A `Non*Periodic` Job will be removed automatically once it has been scheduled successfully. For `Periodic` Jobs, call `SmartScheduler.removeJob(jobID)` method to remove the job.
 
 ```
 	SmartScheduler jobScheduler = SmartScheduler.getInstance(getApplicationContext());
