@@ -102,7 +102,7 @@ Choosing which API to use depends on the certain conditions.
 ```
 
 ## Contribute
-Please use the [issues tracker](https://github.com/hypertrack/smart-scheduler/issues) to raise bug reports and feature requests. We'd love to see your pull requests * send them in!
+Please use the [issues tracker](https://github.com/hypertrack/smart-scheduler-android/issues) to raise bug reports and feature requests. We'd love to see your pull requests * send them in!
 
 ## Support
 Join our [Slack community](http://slack.hypertrack.io) for instant responses. You can also email us at help@hypertrack.io
