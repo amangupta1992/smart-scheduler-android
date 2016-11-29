@@ -14,7 +14,7 @@ Choosing which API to use depends on the certain conditions.
 * It is easier to send Broadcast to start a service delayed using this API.
 
 ##### CONS:
-* Periodic `Alarm` only work in case the interval between them is >= `1 sec`.
+* Periodic `Alarm` only work in case the interval between them is >= `60 sec`.
 
 
 #### `Handler` API:
