@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.hypertrack.android_scheduler">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <application>
+        <service
+            android:name="io.hypertrack.smart_scheduler.SmartSchedulerAlarmReceiverService"
+            android:exported="false" />
+
+        <service
+            android:name="io.hypertrack.smart_scheduler.SmartSchedulerPeriodicTaskService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="io.hypertrack.smart_scheduler.SmartSchedulerAlarmReceiver"
+            android:exported="false" />
+    </application>
+</manifest>
