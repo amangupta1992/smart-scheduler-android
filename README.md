@@ -1,5 +1,6 @@
 # smart-scheduler-android
-[![Slack Status](http://slack.hypertrack.io/badge.svg)](http://slack.hypertrack.io)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/672a8b4b2bfc4f7d86c07e22a435515a)](https://www.codacy.com/app/piyushguptaece/smart-scheduler-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hypertrack/smart-scheduler-android&amp;utm_campaign=Badge_Grade)
 
 ## Overview
 
