@@ -3,53 +3,9 @@
 
 ## Overview
 
-A utility library for Android to schedule one-time or periodic jobs while your app is running. Currently, Android OS supports 3 types of scheduling APIs: `Handler`, `AlarmManager` and `JobScheduler`.
-Choosing which API to use depends on the certain conditions. 
+A utility library for Android to schedule one-time or periodic jobs while your app is running. Currently, Android OS supports 3 types of scheduling APIs: `Handler`, `AlarmManager` and `JobScheduler`. The choice of one suitable API, the inflexibility of switching between them and the amount of boilerplate code required for setting up makes it difficult to use these APIs. 
 
-#### `AlarmManager` API: 
-
-##### PROs:
-* The `AlarmManager` API is intended for cases where you want to have your application code run at a specific time, even if your application itself is not currently running. 
-* It is available on all devices and all OS versions.
-* It is easier to send Broadcast to start a service delayed using this API.
-
-##### CONS:
-* Periodic `Alarm` only work in case the interval between them is >= `60 sec`.
-
-
-#### `Handler` API:
-
-##### PROs:
-* For normal timing operations (ticks, timeouts, etc) it is easier and much more efficient to use `Handler`.
-* `Handler` API is preferred where scheduling needs to happen with an interval < `1 sec`.
-
-##### CONS:
-* `Handler` API works better only for periodic jobs which need to be performed while the app is in the foreground.
-
-
-#### `JobScheduler` API:
-
-##### PROs:
-* The `JobScheduler` API is relatively easier to use and provides a lot of controls to the developer to schedule jobs better.
-* This API helps is respecting device state and prevents exploitation of device resources by apps.
-
-##### CONS:
-* This is only available on Android Lollipop and above (21*).
-* `JobScheduler` API with Network dependency doesn't get scheduled if the period is below 30 seconds.
-* It starts failing if the power saver mode has been enabled on the device.
-
-
-#### `GcmNetworkManager` API:
-
-##### PROs:
-* The `GcmNetworkManager` API is similar to `JobScheduler` API.
-* This API can be used on Android Gingerbread and above (9*).
-
-##### CONS:
-* It is only available on devices with Google Play preinstalled.
-* `PeriodicTask` or `GcmNetworkManager` APIs will not be scheduled if the period is below 30 seconds. 
-* `PeriodicTask` API starts failing if the power saver mode has been enabled on the device.
-
+Want to know more on this and wondering why you should prefer using this library over doing it yourself. Check out the [blog post](https://blog.hypertrack.io/?p=6713).
 
 ## Usage
 
@@ -77,7 +33,7 @@ Choosing which API to use depends on the certain conditions.
     Job job = builder.build();
 ```
 
-* Each job has a unique ID. This ID helps to identify the job later to update requirements or to cancel the job. In case this unique ID is not specified in the `Job` object, one will be auto*generated using `Job.generateJobID()` method.
+* Each job has a unique ID. This ID helps to identify the job later to update requirements or to cancel the job. In case this unique ID is not specified in the `Job` object, one will be auto-generated using `Job.generateJobID()` method.
 
 * Once a `Job` object has been created with the relevant parameters, you can add this job using `SmartScheduler` class.
 
@@ -90,7 +46,7 @@ Choosing which API to use depends on the certain conditions.
     }
 ```
 
-* A `Non*Periodic` Job will be removed automatically once it has been scheduled successfully. For `Periodic` Jobs, call `SmartScheduler.removeJob(jobID)` method to remove the job.
+* A `Non-Periodic` Job will be removed automatically once it has been scheduled successfully. For `Periodic` Jobs, call `SmartScheduler.removeJob(jobID)` method to remove the job.
 
 ```
 	SmartScheduler jobScheduler = SmartScheduler.getInstance(getApplicationContext());
@@ -102,7 +58,8 @@ Choosing which API to use depends on the certain conditions.
 ```
 
 ## Contribute
-Please use the [issues tracker](https://github.com/hypertrack/smart-scheduler-android/issues) to raise bug reports and feature requests. We'd love to see your pull requests * send them in!
+Please use the [issues tracker](https://github.com/hypertrack/smart-scheduler-android/issues) to raise bug reports and feature requests. We'd love to see your pull requests, so send them in!
 
-## Support
-Join our [Slack community](http://slack.hypertrack.io) for instant responses. You can also email us at help@hypertrack.io
+## About HyperTrack
+Developers use HyperTrack to build location features, not infrastructure. We reduce the complexity of building and operating location features to a few APIs that just work.
+Check it out. [Sign up](https://dashboard.hypertrack.io/signup/) and start building! Join our [Slack community](http://slack.hypertrack.io) for instant responses. You can also email us at help@hypertrack.io
