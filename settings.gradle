@@ -1,1 +1,1 @@
-include ':library', ':smart-scheduler-demo'
+include ':smart-scheduler', ':smart-scheduler-demo'
