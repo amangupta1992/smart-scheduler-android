@@ -10,6 +10,8 @@ Want to know more on this and wondering why you should prefer using this library
 
 ## Usage
 
+![Demo App](http://i.imgur.com/blls0leh.gif)
+
 * The class `SmartScheduler` serves as the entry point. You need to create a `Job` object with the corresponding job parameters using the `Job.Builder` class.
 
 * The `Job.Builder` class has many extra options, e.g. you can specify a required network connection, required charging state, make the job periodic or run the job at an exact time.

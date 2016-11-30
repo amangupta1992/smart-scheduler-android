@@ -22,7 +22,7 @@
 
     <string-array name="network_type_array">
         <item>Any</item>
-        <item>Metered Connection (Mobile Data)</item>
-        <item>Un-Metered Connection (WiFi)</item>
+        <item>Mobile Data (Metered)</item>
+        <item>WiFi (Un-Metered)</item>
     </string-array>
 </resources>
