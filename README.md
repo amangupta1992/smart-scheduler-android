@@ -10,20 +10,11 @@ Want to know more on this and wondering why you should prefer using this library
 
 ## Download
 
-Download the [latest version](https://dl.bintray.com/piyushgupta27/maven/io/hypertrack/smart-scheduler/0.0.2/smart-scheduler-0.0.2.aar) or grab via Gradle:
+Download the [latest version](https://oss.sonatype.org/content/repositories/releases/io/hypertrack/smart-scheduler/) or grab via Gradle:
 
-In your module's `build.gradle`, add the following code snippet and run the gradle-sync.
+The library is available on `mavenCentral()` and `jcenter()`. In your module's `build.gradle`, add the following code snippet and run the gradle-sync.
 
 ```
-repositories {
-    ...
-    maven {
-        url 'https://dl.bintray.com/piyushgupta27/maven/'
-    }
-}
-
-...
-
 dependencies {
     ...
     compile 'io.hypertrack:smart-scheduler:0.0.2'
