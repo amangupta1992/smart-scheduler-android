@@ -8,9 +8,34 @@ A utility library for Android to schedule one-time or periodic jobs while your a
 
 Want to know more on this and wondering why you should prefer using this library over doing it yourself. Check out the [blog post](https://blog.hypertrack.io/?p=6713).
 
+## Download
+
+Download the [latest version](https://dl.bintray.com/piyushgupta27/maven/io/hypertrack/smart-scheduler/0.0.2/smart-scheduler-0.0.2.aar) or grab via Gradle:
+
+In your module's `build.gradle`, add the following code snippet and run the gradle-sync.
+
+```
+repositories {
+    ...
+    maven {
+        url 'https://dl.bintray.com/piyushgupta27/maven/'
+    }
+}
+
+...
+
+dependencies {
+    ...
+    compile 'io.hypertrack:smart-scheduler:0.0.2'
+    ...
+}
+```
+
+If you didn't turn off the manifest merger from the Gradle build tools, then no further step is required to setup the library. Otherwise you manually need to add the permissions and services like in this [AndroidManifest](https://github.com/hypertrack/smart-scheduler-android/blob/master/library/src/main/AndroidManifest.xml).
+
 ## Usage
 
-![Demo App](http://i.imgur.com/blls0leh.gif)
+![Demo App](http://i.imgur.com/X53klUZ.gif?1)
 
 * The class `SmartScheduler` serves as the entry point. You need to create a `Job` object with the corresponding job parameters using the `Job.Builder` class.
 

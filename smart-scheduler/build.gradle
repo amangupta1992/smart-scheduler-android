@@ -1,4 +1,29 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'smart-scheduler'
+
+    publishedGroupId = 'io.hypertrack'
+    libraryName = 'SmartScheduler'
+    artifact = 'smart-scheduler'
+
+    libraryDescription = 'A utility library for schedule periodic and non-periodic jobs efficiently.'
+
+    siteUrl = 'https://github.com/hypertrack/smart-scheduler-android'
+    gitUrl = 'https://github.com/hypertrack/smart-scheduler-android.git'
+
+    libraryVersion = computeVersionName()
+
+    developerId = 'piyushgupta27'
+    developerName = 'Piyush Gupta'
+    developerEmail = 'piyush@hypertrack.io'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 24
@@ -8,7 +33,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName computeVersionName()
     }
     buildTypes {
         release {
@@ -24,3 +49,38 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
 }
+
+def computeVersionName() {
+    def versionPropsFile = file('gradle.properties')
+
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        def value = 0
+
+        def runTasks = gradle.startParameter.taskNames
+        if ('internalRelease' in runTasks || 'iR' in runTasks) {
+            value = 1;
+        }
+
+        def versionMajor = 0
+        def versionMinor = 0
+        def versionPatch = versionProps['VERSION_PATCH'].toInteger() + value
+        def versionBuild = versionProps['VERSION_BUILD'].toInteger() + 1
+
+        versionProps['VERSION_PATCH'] = versionPatch.toString()
+        versionProps['VERSION_BUILD'] = versionBuild.toString()
+        versionProps['version'] = versionMajor + "." + versionMinor + "." + versionPatch
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+        return versionMajor + "." + versionMinor + "." + versionPatch
+    } else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}
+
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
