@@ -31,7 +31,7 @@ dependencies {
 }
 ```
 
-If you didn't turn off the manifest merger from the Gradle build tools, then no further step is required to setup the library. Otherwise you manually need to add the permissions and services like in this [AndroidManifest](https://github.com/hypertrack/smart-scheduler-android/blob/master/library/src/main/AndroidManifest.xml).
+If you didn't turn off the manifest merger from the Gradle build tools, then no further step is required to setup the library. Otherwise you manually need to add the permissions and services like in this [AndroidManifest](https://github.com/hypertrack/smart-scheduler-android/blob/master/smart-scheduler/src/main/AndroidManifest.xml). 
 
 ## Usage
 
