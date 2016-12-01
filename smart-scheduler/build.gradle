@@ -9,7 +9,7 @@ ext {
     libraryName = 'SmartScheduler'
     artifact = 'smart-scheduler'
 
-    libraryDescription = 'A utility library for schedule periodic and non-periodic jobs efficiently.'
+    libraryDescription = 'A utility library for scheduling periodic and non-periodic jobs efficiently.'
 
     siteUrl = 'https://github.com/hypertrack/smart-scheduler-android'
     gitUrl = 'https://github.com/hypertrack/smart-scheduler-android.git'
@@ -20,9 +20,9 @@ ext {
     developerName = 'Piyush Gupta'
     developerEmail = 'piyush@hypertrack.io'
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    licenseName = 'The MIT License (MIT)'
+    licenseUrl = 'http://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
 }
 
 android {
