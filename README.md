@@ -5,8 +5,9 @@
 ## Overview
 
 A utility library for Android to schedule one-time or periodic jobs while your app is running. Currently, Android OS supports 3 types of scheduling APIs: `Handler`, `AlarmManager` and `JobScheduler`. The choice of one suitable API, the inflexibility of switching between them and the amount of boilerplate code required for setting up makes it difficult to use these APIs. 
+Want to know more on this and wondering why you should prefer using this library over doing it yourself. Check out the [blog post](https://blog.hypertrack.io/?p=6713). 
 
-Want to know more on this and wondering why you should prefer using this library over doing it yourself. Check out the [blog post](https://blog.hypertrack.io/?p=6713).
+[android-job](https://github.com/evernote/android-job) is a similar scheduling library, which unifies `AlarmManager`, `GcmNetworkManager` & `JobScheduler` APIs. But when it comes to implementing network dependent jobs for an interval less than `30sec` or implementing jobs while the device is in PowerSaver Mode, it fails.
 
 ## Download
 
