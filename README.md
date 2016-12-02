@@ -1,6 +1,6 @@
 # smart-scheduler-android
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/672a8b4b2bfc4f7d86c07e22a435515a)](https://www.codacy.com/app/piyushguptaece/smart-scheduler-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hypertrack/smart-scheduler-android&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/hypertrack/smart-scheduler-android.svg?branch=master)](https://travis-ci.org/hypertrack/smart-scheduler-android) [ ![Download](https://api.bintray.com/packages/piyushgupta27/maven/smart-scheduler/images/download.svg) ](https://bintray.com/piyushgupta27/maven/smart-scheduler/_latestVersion) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/672a8b4b2bfc4f7d86c07e22a435515a)](https://www.codacy.com/app/piyushguptaece/smart-scheduler-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hypertrack/smart-scheduler-android&amp;utm_campaign=Badge_Grade) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/licenses/MIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 
