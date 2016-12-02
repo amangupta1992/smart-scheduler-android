@@ -8,6 +8,19 @@ import android.support.annotation.Nullable;
  */
 public class Job {
 
+    /** Job parameters */
+    private final int jobId;
+    private final int jobType;
+    private final SmartScheduler.JobScheduledCallback jobScheduledCallback;
+    private final String periodicTaskTag;
+    private final boolean requireCharging;
+    private final int networkType;
+    private final boolean isPeriodic;
+    private final long intervalMillis;
+
+    // Threshold to schedule via Handlers
+    protected static final long JOB_TYPE_HANDLER_THRESHOLD = 60000;
+
     /** Network Types*/
     public abstract class NetworkType {
         /** Default */
@@ -31,18 +44,6 @@ public class Job {
         /** Use Alarm type job if the frequency required for the Job is large enough to be using alarms */
         public static final int JOB_TYPE_ALARM = 3;
     }
-    // Threshold to schedule via Handlers
-    protected static final long JOB_TYPE_HANDLER_THRESHOLD = 60000;
-
-    /** Job parameters */
-    private final int jobId;
-    private final int jobType;
-    private final SmartScheduler.JobScheduledCallback jobScheduledCallback;
-    private final String periodicTaskTag;
-    private final boolean requireCharging;
-    private final int networkType;
-    private final boolean isPeriodic;
-    private final long intervalMillis;
 
     /**
      * Method to generate unique JobId

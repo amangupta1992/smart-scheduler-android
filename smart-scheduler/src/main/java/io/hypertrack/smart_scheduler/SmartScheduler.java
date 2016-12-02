@@ -70,6 +70,7 @@ public class SmartScheduler {
 
     /**
      * Method to check if Job with give JobId exists in the SmartScheduler or not
+     *
      * @param jobId
      * @return
      */
@@ -79,6 +80,7 @@ public class SmartScheduler {
 
     /**
      * Method to check if Job exists in the SmartScheduler or not
+     *
      * @param job
      * @return
      */
@@ -312,12 +314,9 @@ public class SmartScheduler {
                     }
 
                     // For Periodic Jobs, Schedule Job for the next time
-                    if (job.isPeriodic()) {
-
-                        if (jobHandlers.get(jobID) != null && jobRunnables.get(jobID) != null) {
-                            jobHandlers.get(jobID)
-                                    .postDelayed(jobRunnables.get(jobID), job.getIntervalMillis());
-                        }
+                    if (job.isPeriodic() && jobHandlers.get(jobID) != null && jobRunnables.get(jobID) != null) {
+                        jobHandlers.get(jobID)
+                                .postDelayed(jobRunnables.get(jobID), job.getIntervalMillis());
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "Exception occurred while HandlerTypeJob.onRun(): " + e);

@@ -98,35 +98,28 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
 
     private int getJobType() {
         int jobTypeSelectedPos = jobTypeSpinner.getSelectedItemPosition();
-        int jobType = Job.Type.JOB_TYPE_NONE;
         switch (jobTypeSelectedPos) {
+            default:
             case 1:
-                jobType = Job.Type.JOB_TYPE_HANDLER;
-                break;
+                return Job.Type.JOB_TYPE_HANDLER;
             case 2:
-                jobType = Job.Type.JOB_TYPE_ALARM;
-                break;
+                return Job.Type.JOB_TYPE_ALARM;
             case 3:
-                jobType = Job.Type.JOB_TYPE_PERIODIC_TASK;
-                break;
+                return Job.Type.JOB_TYPE_PERIODIC_TASK;
         }
-
-        return jobType;
     }
 
     private int getNetworkTypeForJob() {
         int networkTypeSelectedPos = networkTypeSpinner.getSelectedItemPosition();
-        int networkType = Job.NetworkType.NETWORK_TYPE_ANY;
         switch (networkTypeSelectedPos) {
+            default:
+            case 0:
+                return Job.NetworkType.NETWORK_TYPE_ANY;
             case 1:
-                networkType = Job.NetworkType.NETWORK_TYPE_CONNECTED;
-                break;
+                return Job.NetworkType.NETWORK_TYPE_CONNECTED;
             case 2:
-                networkType = Job.NetworkType.NETWORK_TYPE_UNMETERED;
-                break;
+                return Job.NetworkType.NETWORK_TYPE_UNMETERED;
         }
-
-        return networkType;
     }
 
     private void removePeriodicJob() {
